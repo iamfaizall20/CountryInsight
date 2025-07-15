@@ -15,7 +15,20 @@ const
     population = document.getElementById('population'),
     borders = document.getElementById('borders');
 
-function clearData() {
+
+SearchButton.onclick = FetchData;
+
+document.addEventListener('keydown', () => {
+    SearchField.focus();
+})
+
+SearchField.addEventListener('keypress', (e) => {
+    if (e.key === "Enter") {
+        FetchData();
+    }
+})
+
+function clearExistingData() {
     countryName.textContent = "";
     otherNames.textContent = "";
     nativeLang.textContent = "";
@@ -28,24 +41,32 @@ function clearData() {
     DataSection.style.visibility = "hidden";
 }
 
-SearchButton.onclick = async () => {
+async function FetchData() {
 
+    if (SearchField.value === '') {
+        alert("Empty Field");
+        return;
+    }
     const Name = SearchField.value;
     const URL = `https://restcountries.com/v3.1/name/${Name}?fullText=true`;
 
-    clearData();
+    clearExistingData();
 
-    DataSection.classList.add('loading');
-    DataSection.style.visibility = "visible";
-
+    SearchButton.textContent = "Searching";
     try {
         let response = await fetch(URL);
         let CountryData = await response.json();
 
         if (response.ok) {
-            SearchButton.textContent = "Searching";
+
+            DataSection.classList.add('loading');
+            DataSection.style.visibility = "visible";
 
             setTimeout(() => {
+                DataSection.classList.remove('loading');
+                DataSection.style.pointerEvents = "auto";
+                SearchButton.textContent = "Search";
+
                 countryName.textContent = Name;
                 otherNames.textContent = CountryData[0].altSpellings[Object.keys(CountryData[0].altSpellings)[2]];
                 capital.textContent = CountryData[0].capital.toString();
@@ -58,17 +79,15 @@ SearchButton.onclick = async () => {
                 const FlagImage = CountryData[0].flags.png;
                 FlagSection.innerHTML = `<img src="${FlagImage}">`;
 
-                DataSection.classList.remove('loading');
-                DataSection.style.pointerEvents = "auto";
 
-                SearchButton.textContent = "Search";
             }, 1500);
 
         } else {
             alert("Invalid Country Name");
             DataSection.classList.remove('loading');
             DataSection.style.pointerEvents = "auto";
-            clearData();
+            SearchButton.textContent = "Search";
+            clearExistingData();
         }
         SearchField.value = "";
 
@@ -76,6 +95,7 @@ SearchButton.onclick = async () => {
         alert(error.message);
         DataSection.classList.remove('loading');
         DataSection.style.pointerEvents = "auto";
-        clearData();
+        SearchButton.textContent = "Search";
+        clearExistingData();
     }
 }

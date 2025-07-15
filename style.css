@@ -105,6 +105,7 @@ section .data-section{
 .countryName{
   font-size: 45px;
   font-weight: 650;
+  text-transform: capitalize;
 }
 .otherName{
   font-size: 18.5px;
@@ -128,6 +129,8 @@ section .data-section{
   opacity: 0.8;
   font-weight: 500;
 }
+
+
 
 /* Skeleton styles */
 .skeleton {
