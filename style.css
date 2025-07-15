@@ -10,7 +10,7 @@
 
 html, body {
   min-height: 100vh;
-  background: #FBFBFB;
+  background: #fff;
 }
 header,footer{
   display: flex;
@@ -50,7 +50,7 @@ section .search-section{
 }
 #searchField{
   width: 480px;
-  border: 1px solid #222831;
+  border: 1.2px solid #222831;
   outline: none;
   background: transparent;
   padding: 9px 10px;
@@ -66,6 +66,9 @@ section .search-section{
   border: none;
   outline: none;
   cursor: pointer;
+  width: 140px;
+  display: flex;
+  justify-content: center;
   transition:all 0.3s ease;
 
   &:hover{
@@ -73,7 +76,6 @@ section .search-section{
   }
 }
 section .data-section{
-  /* margin-top: 20px; */
   height: 70%;
   width: 80%;
   margin:  20px auto 0;
@@ -90,14 +92,15 @@ section .data-section{
   height: 100%;
   width: 100%;
   object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.2));
 }
 .data-prt{
   height: 100%;
   width: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  padding: 30px 10px;
+  justify-content: space-between;
+  padding: 35px 10px 50px 10px;
 }
 .countryName{
   font-size: 45px;
@@ -124,4 +127,81 @@ section .data-section{
 .data-prt span{
   opacity: 0.8;
   font-weight: 500;
+}
+
+/* Skeleton styles */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f5f5f5 37%,
+    #e0e0e0 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 3s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.data-section.loading {
+  visibility: visible;
+  pointer-events: none;
+}
+
+.data-section.loading .flag-prt img {
+  display: none;
+}
+
+.data-section.loading .flag-prt::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f5f5f5 37%,
+    #e0e0e0 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 3s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+.data-section.loading .countryName,
+.data-section.loading .otherName,
+.data-section.loading .middle-section h4,
+.data-section.loading .footer h4 {
+  color: transparent;
+}
+
+.data-section.loading .countryName::before,
+.data-section.loading .otherName::before,
+.data-section.loading .middle-section h4::before,
+.data-section.loading .footer h4::before {
+  content: "";
+  display: block;
+  height: 1em;
+  width: 60%;
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #f5f5f5 37%,
+    #e0e0e0 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 3s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+.data-section.loading .middle-section h4::before {
+  width: 80%;
 }
