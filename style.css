@@ -348,6 +348,7 @@ section .data-section{
   .dropdown {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    margin-top: 5px;
   }
 
   .dropdown-item{
