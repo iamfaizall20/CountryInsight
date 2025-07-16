@@ -128,8 +128,6 @@ section .data-section{
   opacity: 0.8;
   font-weight: 500;
 }
-
-
 /* Skeleton styles */
 .skeleton {
   background: linear-gradient(

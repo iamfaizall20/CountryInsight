@@ -3,7 +3,7 @@ const SearchField = document.getElementById('searchField'),
     SearchButton = document.getElementById('searchButton'),
     DataSection = document.querySelector('.data-section'),
     FlagSection = document.querySelector('.flag-prt'),
-    dropdown = document.getElementById('dropdown'); // dropdown <ul>
+    dropdown = document.getElementById('dropdown');
 
 // Selectors
 const countryName = document.querySelector('.countryName'),
@@ -132,7 +132,6 @@ async function FetchData() {
                 FlagSection.innerHTML = `<img src="${FlagImage}" alt="Flag of ${Name}">`;
             }, 1500);
         } else {
-            alert("Invalid Country Name");
             DataSection.classList.remove('loading');
             DataSection.style.pointerEvents = "auto";
             SearchButton.textContent = "Search";
@@ -141,7 +140,6 @@ async function FetchData() {
 
         SearchField.value = "";
     } catch (error) {
-        alert(error.message);
         DataSection.classList.remove('loading');
         DataSection.style.pointerEvents = "auto";
         SearchButton.textContent = "Search";
