@@ -9,7 +9,7 @@
 }
 
 html, body {
-  min-height: 100vh;
+  min-height: 100svh;
   background: #fff;
 }
 header,footer{
@@ -24,7 +24,7 @@ header{
 }
 footer{
   height: 40px;
-  padding-right: 20px;
+  display: flex;
   justify-content: flex-end;
   border-top: 0.5px solid #ccc;
 }
@@ -34,6 +34,7 @@ header h1{
 footer p{
   opacity: 0.8;
   font-size: 15px;
+  margin-right: 20px;
 }
 section{
   height: calc(100vh - 110px);
@@ -41,7 +42,8 @@ section{
   flex-direction: column;
   padding-top: 20px;
 }
-section .search-section{
+section .search-section,
+.dropdown-container{
   height: 15%;
   display: flex;
   align-items: center;
@@ -73,6 +75,21 @@ section .search-section{
   &:hover{
     background: #374150;
   }
+}
+section .error-section{
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  position: absolute;
+  height: 60%;
+  width: 50%;
+  margin: 20px auto 0;
+  display: none;
+}
+.error-section img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 section .data-section{
   height: 70%;
@@ -189,6 +206,7 @@ section .data-section{
   content: "";
   display: block;
   height: 1em;
+  margin: 5px 0;
   width: 60%;
   background: linear-gradient(
     90deg,
@@ -243,4 +261,104 @@ section .data-section{
 
 .dropdown-item:hover {
   background-color: #F5F5F5;
+}
+
+
+/* Tablets and below (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  footer{
+    display: flex;
+    justify-content: center;
+  }
+  footer p{
+    margin-right: 0px;
+  }
+  #searchField,
+  .dropdown-container {
+    width: 90%;
+  }
+
+  #searchButton {
+    width: 90%;
+  }
+
+  section .data-section {
+    margin: 15px auto 5px;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 100%;
+    
+  }
+  .flag-prt{
+    height: 40%;
+    width: 100%;
+    padding: 0px;
+  }
+  .data-prt{
+    height: 60%;
+    width: 100%;
+    justify-content: space-evenly;
+    padding: 15px 3px 10px;
+  }
+  .countryName {
+    font-size: 30px;
+  }
+  .middle-section {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+  section .error-section{
+    height: 70%;
+    width: 90%;
+  }
+}
+
+/* Mobile devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  header{
+    height: 55px;
+  }
+  header h1 {
+    font-size: 18.5px;
+  }
+
+  footer p {
+    font-size: 13px;
+  }
+  section{
+    height: calc(100vh - 65px);
+  }
+  .search-section,
+  .dropdown-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  #searchField {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  #searchButton {
+    width: 90%;
+    font-size: 1em;
+  }
+
+  .dropdown {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .dropdown-item{
+    padding: 9.5px;
+  }
+  .countryName {
+    font-size: 28px;
+  }
+  .otherName,
+  .middle-section,
+  .data-prt .footer {
+    font-size: 18.5px;
+  }
 }

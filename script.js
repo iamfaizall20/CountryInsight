@@ -3,6 +3,7 @@ const SearchField = document.getElementById('searchField'),
     SearchButton = document.getElementById('searchButton'),
     DataSection = document.querySelector('.data-section'),
     FlagSection = document.querySelector('.flag-prt'),
+    ErrorSection = document.querySelector('.error-section'),
     dropdown = document.getElementById('dropdown');
 
 // Selectors
@@ -112,6 +113,7 @@ async function FetchData() {
 
         if (response.ok) {
             DataSection.classList.add('loading');
+            ErrorSection.style.display = "none";
             DataSection.style.visibility = "visible";
 
             setTimeout(() => {
@@ -132,6 +134,7 @@ async function FetchData() {
                 FlagSection.innerHTML = `<img src="${FlagImage}" alt="Flag of ${Name}">`;
             }, 1500);
         } else {
+            ErrorSection.style.display = "block";
             DataSection.classList.remove('loading');
             DataSection.style.pointerEvents = "auto";
             SearchButton.textContent = "Search";
@@ -140,6 +143,7 @@ async function FetchData() {
 
         SearchField.value = "";
     } catch (error) {
+        ErrorSection.style.display = "block";
         DataSection.classList.remove('loading');
         DataSection.style.pointerEvents = "auto";
         SearchButton.textContent = "Search";
