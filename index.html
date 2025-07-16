@@ -15,9 +15,12 @@
 
     <section>
         <div class="search-section">
-            <input type="text" id="searchField" placeholder="Enter Country Name here">
+            <div class="dropdown-container">
+                <input type="text" id="searchField" placeholder="Enter Country Name here" autocomplete="off" />
+                <ul class="dropdown" id="dropdown"></ul>
+            </div>
             <button id="searchButton">Search</button>
-        </div>
+        </div>        
         <div class="data-section">
             <div class="flag-prt">
             </div>
